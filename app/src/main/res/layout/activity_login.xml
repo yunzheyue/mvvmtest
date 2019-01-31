@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:binding="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+                type="com.example.administrator.mvvmtest.login.LoginViewModel"
+                name="viewModel"
+        />
+        <import type="com.example.administrator.mvvmtest.R"/>
+    </data>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="vertical"
+                  android:layout_height="match_parent">
+        <!--这里用@=达到双向数据绑定的效果-->
+        <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:text="@={viewModel.userName}"/>
+
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="登录"
+                android:id="@+id/login"
+                android:onClick="@{viewModel.loginOnClick}"
+        />
+
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:onClick="@{viewModel.jumpActivity}"
+                android:text="跳转到普通的activity，是可以的"/>
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:onClick="@{viewModel.jumpActivity}"
+                android:text="跳转到recyclerView的activity"/>
+
+        <!--主要是能控制点击的频次，添加下面属性后，就和上面的效果相同了，能够重复点击-->
+        <!--binding:isThrottleFirst="@{Boolean.TRUE}"-->
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="自定义点击事件"
+                binding:onClickCommand="@{viewModel.customConmand}"
+        />
+
+        <!--使用binding:placeholderRes进行图片占位
+            但是这里使用了R.xxx.xx  也就是使用了R文件，那么就要在data标签中配置
+             <import type="包名.R" />
+        -->
+        <ImageView android:layout_width="100dp" android:layout_height="100dp"
+                   binding:url="@{viewModel.imgUrl}"
+                   binding:placeholderRes="@{R.mipmap.ic_launcher_round}"
+        />
+
+
+    </LinearLayout>
+
+</layout>
