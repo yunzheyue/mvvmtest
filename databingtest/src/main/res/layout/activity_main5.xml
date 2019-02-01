@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.databinding.ObservableArrayList"/>
+        <import type="com.example.databingtest.SnowMan"/>
+        <variable name="list" type="ObservableArrayList&lt;SnowMan>"/>
+    </data>
+
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent"
+                  android:layout_height="match_parent">
+
+        <!--这样并没有什么作用-->
+        <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="@={list[0].name}"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="@{list[0].name}"/>
+
+
+
+
+    </LinearLayout>
+
+</layout>

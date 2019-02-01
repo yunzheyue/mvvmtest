@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--通过class能够指定dataBinding的名字-->
+    <data class="com.example.databingtest.SecondActivityBinding">
+        <variable name="name" type="String"/>
+        <!--导入工具类，静态方法-->
+        <import type="com.example.databingtest.Utils.MyUtil"/>
+        <variable name="snowMan" type="com.example.databingtest.SnowMan"/>
+        <variable name="isVisible" type="Boolean"/>
+        <import type="android.view.View"/>
+
+        <variable name="time" type="java.util.Date"/>
+        <variable name="age" type="Integer"/>
+        <variable name="sex" type="Boolean"/>
+
+
+    </data>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@{name}"/>
+
+        <!--直接使用静态方法，进行数据处理-->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="@{MyUtil.getName(snowMan)}"/>
+
+        <!--注意，在这里要导入View类才能调用VISIBLE或者GONE-->
+        <ImageView android:layout_width="100dp" android:layout_height="100dp"
+                   android:src="@mipmap/ic_launcher" android:visibility="@{isVisible?View.VISIBLE:View.GONE}"/>
+        <Button android:id="@+id/bt_change" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="改变显隐性"/>
+
+        <!--在使用text显示的时候，需要转化成字符串，否则就会报错-->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="@{String.valueOf(time)}"/>
+
+        <!--但是可以使用convert转换，只要在任意的类中，用@BindingConversion,制作转换方法，就能自动使用，现在是写在MyUtil2中-->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="@{time}"/>
+        <!--不能使用在int值上，但是能使用在boolea值-->
+        <!--<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"-->
+        <!--android:text="@{age}"/>-->
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="@{sex}"/>
+
+        <!--定义普通非继承BaseObservable类不能实现双向数据绑定-->
+        <!--<EditText android:layout_width="match_parent" android:layout_height="wrap_content"-->
+                  <!--android:text="@={snowMan.name}"/>-->
+        <!--<TextView android:layout_width="match_parent" android:layout_height="wrap_content"-->
+                  <!--android:text="@{snowMan.name}"/>-->
+
+    </LinearLayout>
+
+
+</layout>

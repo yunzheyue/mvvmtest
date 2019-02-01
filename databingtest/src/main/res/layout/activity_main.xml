@@ -1,19 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+    <data>
+        <!--
+            variable节点每一个变量都会在Binding辅助类中对应get set方法,存放的各个变量类型。
+            name表示变量名称
+            type表示类型
+        -->
+        <variable name="snowMan" type="com.example.databingtest.SnowMan"/>
 
-</android.support.constraint.ConstraintLayout>
+        <!--
+        可以通过import导入其他的类
+        -->
+        <import type="com.example.databingtest.RainMan"/>
+        <variable name="rainMan" type="RainMan"/>
+
+        <!--如果类名相同，那么就可以使用别名-->
+        <import type="com.example.databingtest.entity.RainMan" alias="OtherRainMan"/>
+
+        <variable name="otherRainMan" type="OtherRainMan"/>
+
+        <!--还可以定义其他的变量,基本数据类型和String类型不需要导入-->
+        <variable name="name" type="String"/>
+        <variable name="age" type="Integer"/>
+        <variable name="sex" type="Boolean"/>
+
+        <!--定义集合变量  注意的是，不能使用左括号<，必须使用&lt;进行代替，但是可以使用右括号>  -->
+        <!--这一种方法-->
+        <!--<import type="java.util.ArrayList"/>-->
+        <!--<variable name="list" type="ArrayList&lt;String>"/>-->
+        <!--或这一种方法-->
+        <variable name="list" type="java.util.ArrayList&lt;String>"/>
+
+        <variable name="map" type="java.util.HashMap&lt;String,String>"/>
+
+        <!--定义数组变量-->
+        <variable name="arrays" type="String[]"/>
+
+    </data>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{snowMan.name}"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="@{String.valueOf(rainMan.age)}"
+        />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="@{otherRainMan.name}"
+        />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="@{name}"
+        />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="@{String.valueOf(age)}"
+        />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="@{String.valueOf(sex)}"
+        />
+        <!--在布局文件中，能够使用java代码，相当于模板字符串-->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="@{list.size()>0?list.get(0):`无`}"
+        />
+        <!--同样的道理，也能用在map中。-->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="@{map.size()>0?map.get(`name`):`无`}"
+        />
+
+        <!--使用的是数组的长度-->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="@{arrays.length>0?arrays[0]:`无`}"
+        />
+
+        <Button android:id="@+id/btn_t1" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="更改bind名和使用convert"/>
+        <Button android:id="@+id/btn_t2" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="双向数据绑定"/>
+        <Button android:id="@+id/btn_t3" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="更改数据"/>
+        <Button android:id="@+id/btn_t4" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="和recyclerview的使用"/>
+    </LinearLayout>
+
+</layout>
