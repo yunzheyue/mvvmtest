@@ -8,7 +8,6 @@
             type表示类型
         -->
         <variable name="snowMan" type="com.example.databingtest.SnowMan"/>
-
         <!--
         可以通过import导入其他的类
         -->
@@ -17,14 +16,11 @@
 
         <!--如果类名相同，那么就可以使用别名-->
         <import type="com.example.databingtest.entity.RainMan" alias="OtherRainMan"/>
-
         <variable name="otherRainMan" type="OtherRainMan"/>
-
         <!--还可以定义其他的变量,基本数据类型和String类型不需要导入-->
         <variable name="name" type="String"/>
         <variable name="age" type="Integer"/>
         <variable name="sex" type="Boolean"/>
-
         <!--定义集合变量  注意的是，不能使用左括号<，必须使用&lt;进行代替，但是可以使用右括号>  -->
         <!--这一种方法-->
         <!--<import type="java.util.ArrayList"/>-->
@@ -33,7 +29,6 @@
         <variable name="list" type="java.util.ArrayList&lt;String>"/>
 
         <variable name="map" type="java.util.HashMap&lt;String,String>"/>
-
         <!--定义数组变量-->
         <variable name="arrays" type="String[]"/>
 

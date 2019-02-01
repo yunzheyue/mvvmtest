@@ -9,7 +9,7 @@
 
     <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
                   android:orientation="vertical">
-
+        <!--双向数据绑定需要使用@={}   这样修改EditText，那么下面相应的TextView也会发生改变-->
         <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
                   android:text="@={obRainMan.name}"/>
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"

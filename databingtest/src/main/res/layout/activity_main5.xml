@@ -16,8 +16,6 @@
                   android:text="@{list[0].name}"/>
 
 
-
-
     </LinearLayout>
 
 </layout>

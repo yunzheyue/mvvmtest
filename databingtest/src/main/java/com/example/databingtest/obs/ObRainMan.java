@@ -13,7 +13,6 @@ public class ObRainMan extends BaseObservable {
         this.name = name;
         this.age = age;
     }
-
     /**
      * 通过@Bindable标记后能在BR中存在响应的字段，当变化的时候能够通知
      * 更新UI

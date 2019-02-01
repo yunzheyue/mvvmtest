@@ -24,7 +24,8 @@ public class SnowRvAdapter extends RecyclerView.Adapter<SnowRvAdapter.SnowManHol
     @Override
     public SnowManHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 //        这里的ItemMain6RvBinding 也是自动生成的
-        ItemMain6RvBinding binding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()), R.layout.item_main6_rv, viewGroup, false);
+        ItemMain6RvBinding binding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()),
+                R.layout.item_main6_rv, viewGroup, false);
         return new SnowManHolder(binding);
     }
 
